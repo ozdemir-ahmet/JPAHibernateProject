@@ -3,6 +3,7 @@ package be.ozdemir.schoolsout.model;
 import javax.persistence.*;
 
 @Entity
+@Table
 public class Person {
 
     @Id
