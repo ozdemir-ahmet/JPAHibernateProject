@@ -1,6 +1,7 @@
 package be.ozdemir.schoolsout.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -18,7 +19,16 @@ public class Person {
     private Gender gender;
 
     @ManyToOne
-    private Course course;
+    private Course courseActive;
+
+    @ManyToMany
+    private List<Course> courseHistory;
+
+    @OneToOne(mappedBy = "person")
+    private User user;
+
+    @OneToMany(mappedBy = "person")
+    private List<Grade> grades;
 
     public Integer getId() {
         return id;
@@ -56,12 +66,39 @@ public class Person {
         return this;
     }
 
-    public Course getCourse() {
-        return course;
+    public Course getCourseActive() {
+        return courseActive;
     }
 
-    public Person setCourse(Course course) {
-        this.course = course;
+    public Person setCourseActive(Course course) {
+        this.courseActive = course;
+        return this;
+    }
+
+    public List<Course> getCourseHistory() {
+        return courseHistory;
+    }
+
+    public Person setCourseHistory(List<Course> courseHistory) {
+        this.courseHistory = courseHistory;
+        return this;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Person setUser(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public Person setGrades(List<Grade> grades) {
+        this.grades = grades;
         return this;
     }
 
@@ -72,7 +109,7 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", familyName='" + familyName + '\'' +
                 ", gender=" + gender +
-                ", course=" + course +
+                ", course=" + courseActive +
                 '}';
     }
 }

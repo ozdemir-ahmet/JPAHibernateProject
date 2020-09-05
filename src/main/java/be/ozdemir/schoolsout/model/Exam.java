@@ -2,6 +2,7 @@ package be.ozdemir.schoolsout.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table
@@ -24,6 +25,15 @@ public class Exam {
 
     @ManyToOne
     private Module module;
+
+    @OneToOne
+    private Exam examGroup;
+
+    @OneToMany
+    private List<Exam> subExams;
+
+    @OneToMany(mappedBy = "exam")
+    private List<Grade> grades;
 
     public Long getId() {
         return id;
@@ -85,6 +95,33 @@ public class Exam {
 
     public Exam setModule(Module module) {
         this.module = module;
+        return this;
+    }
+
+    public Exam getExamGroup() {
+        return examGroup;
+    }
+
+    public Exam setExamGroup(Exam examGroup) {
+        this.examGroup = examGroup;
+        return this;
+    }
+
+    public List<Exam> getSubExams() {
+        return subExams;
+    }
+
+    public Exam setSubExams(List<Exam> subExams) {
+        this.subExams = subExams;
+        return this;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public Exam setGrades(List<Grade> grades) {
+        this.grades = grades;
         return this;
     }
 

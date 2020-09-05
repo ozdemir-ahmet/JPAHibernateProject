@@ -25,6 +25,12 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Module> modules;
 
+    @OneToMany(mappedBy ="courseActive" )
+    private List<Person> currentStudents;
+
+    @ManyToMany(mappedBy = "courseHistory")
+    private List<Person> pastStudents;
+
     public Long getId() {
         return id;
     }
@@ -76,6 +82,33 @@ public class Course {
 
     public Course setModules(List<Module> modules) {
         this.modules = modules;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Course setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public List<Person> getCurrentStudents() {
+        return currentStudents;
+    }
+
+    public Course setCurrentStudents(List<Person> currentStudents) {
+        this.currentStudents = currentStudents;
+        return this;
+    }
+
+    public List<Person> getPastStudents() {
+        return pastStudents;
+    }
+
+    public Course setPastStudents(List<Person> pastStudents) {
+        this.pastStudents = pastStudents;
         return this;
     }
 

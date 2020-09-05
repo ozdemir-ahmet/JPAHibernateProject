@@ -1,12 +1,10 @@
 package be.ozdemir.schoolsout.repos;
 
-import be.ozdemir.schoolsout.Utils.EntityManagerFactoryCreator;
+import be.ozdemir.schoolsout.utils.EntityManagerFactoryCreator;
 import be.ozdemir.schoolsout.model.User;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
 import java.util.Optional;
 
 public class UserRepo {
@@ -14,7 +12,6 @@ public class UserRepo {
     EntityManager em = emf.createEntityManager();
 
     public Optional<User> getUserByLogin (String login){
-        em.getTransaction().begin();
         User user = em.find(User.class, login);
         if (user != null) {
             return (Optional.of(user));

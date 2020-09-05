@@ -1,4 +1,4 @@
-package be.ozdemir.schoolsout.Utils;
+package be.ozdemir.schoolsout.utils;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
