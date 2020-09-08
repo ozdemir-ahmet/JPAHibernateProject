@@ -1,9 +1,12 @@
 package be.ozdemir.schoolsout.model;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Builder
 @Entity
 @Table
 public class Exam {
@@ -23,17 +26,14 @@ public class Exam {
 
     private Integer total;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Module module;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Exam examGroup;
 
     @OneToMany
     private List<Exam> subExams;
-
-    @OneToMany(mappedBy = "exam")
-    private List<Grade> grades;
 
     public Long getId() {
         return id;
@@ -113,15 +113,6 @@ public class Exam {
 
     public Exam setSubExams(List<Exam> subExams) {
         this.subExams = subExams;
-        return this;
-    }
-
-    public List<Grade> getGrades() {
-        return grades;
-    }
-
-    public Exam setGrades(List<Grade> grades) {
-        this.grades = grades;
         return this;
     }
 

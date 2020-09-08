@@ -1,8 +1,11 @@
 package be.ozdemir.schoolsout.model;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Builder
 @Entity
 @Table
 public class Module {
@@ -16,7 +19,7 @@ public class Module {
     @Lob
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Course course;
 
     @OneToMany(mappedBy = "module")

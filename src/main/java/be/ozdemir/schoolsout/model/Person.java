@@ -1,8 +1,11 @@
 package be.ozdemir.schoolsout.model;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Builder
 @Entity
 @Table
 public class Person {
@@ -21,11 +24,8 @@ public class Person {
     @ManyToOne
     private Course courseActive;
 
-    @ManyToMany
+    @OneToMany
     private List<Course> courseHistory;
-
-    @OneToOne(mappedBy = "person")
-    private User user;
 
     @OneToMany(mappedBy = "person")
     private List<Grade> grades;
@@ -81,15 +81,6 @@ public class Person {
 
     public Person setCourseHistory(List<Course> courseHistory) {
         this.courseHistory = courseHistory;
-        return this;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Person setUser(User user) {
-        this.user = user;
         return this;
     }
 

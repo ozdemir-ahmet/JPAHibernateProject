@@ -1,20 +1,23 @@
 package be.ozdemir.schoolsout.model;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Builder
 @Entity
 @Table
 public class Grade {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Person person;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Exam exam;
 
     private BigDecimal gradeValue;
@@ -29,11 +32,11 @@ public class Grade {
 
     private LocalDate gradeDate;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public Grade setId(Integer id) {
+    public Grade setId(Long id) {
         this.id = id;
         return this;
     }
